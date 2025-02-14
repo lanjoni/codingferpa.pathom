@@ -48,7 +48,8 @@
        first))
 
 (pco/defresolver products-by-address [{:address/keys [id]}]
-  {::pco/output [{:address/products [:product/name]}]}
+  {::pco/output [{:address/products [:product/name]}]
+   ::pco/cache? false}
   {:address/products (->> products
                           vals
                           (filter #(= id (-> % :product/from :address/id)))
